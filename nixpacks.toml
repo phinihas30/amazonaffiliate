@@ -1,6 +1,6 @@
 [phases.build]
 cmds = [
-  "cd amazon && python manage.py collectstatic --noinput"
+  "python manage.py collectstatic --noinput"
 ]
 
 [start]
