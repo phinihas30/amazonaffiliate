@@ -1,6 +1,7 @@
 [phases.build]
 cmds = [
-  "python manage.py collectstatic --noinput || (cat /tmp/django.log && exit 1)"
+  "python manage.py --version || (echo 'Python failed to run' && exit 1)",
+  "python manage.py collectstatic --noinput || (echo 'Collectstatic failed' && cat /tmp/django.log && exit 1)"
 ]
 
 [start]
