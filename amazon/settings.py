@@ -150,22 +150,26 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 import logging
 
+LOGGING_HANDLERS = {
+    'console': {
+        'class': 'logging.StreamHandler',
+        'stream': sys.stdout,
+    },
+}
+
+if os.name != 'nt':  # Only add file handler on non-Windows (e.g., Railway)
+    LOGGING_HANDLERS['file'] = {
+        'class': 'logging.FileHandler',
+        'filename': '/tmp/django.log',
+        'level': 'DEBUG',
+    }
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
-    'handlers': {
-        'file': {
-            'class': 'logging.FileHandler',
-            'filename': '/tmp/django.log',
-            'level': 'DEBUG',
-        },
-        'console': {
-            'class': 'logging.StreamHandler',
-            'stream': sys.stdout,
-        },
-    },
+    'handlers': LOGGING_HANDLERS,
     'root': {
-        'handlers': ['console', 'file'],
+        'handlers': list(LOGGING_HANDLERS.keys()),
         'level': 'DEBUG',
     },
 } 
