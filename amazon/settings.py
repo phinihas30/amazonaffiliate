@@ -15,6 +15,11 @@ import os
 import dj_database_url
 import sys
 
+# Production settings from environment variables
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-oi$5*2q0aof6!i)%1!1-y=ysy($-#eksoj0i3s%546j0q2db!%')
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '*').split(',')
+
 # Ensure the staticfiles directory exists
 os.makedirs(os.path.join(Path(__file__).resolve().parent.parent, 'staticfiles'), exist_ok=True)
 
@@ -26,13 +31,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-oi$5*2q0aof6!i)%1!1-y=ysy($-#eksoj0i3s%546j0q2db!%'
-
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ['*']
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 # Application definition
