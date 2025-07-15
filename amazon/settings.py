@@ -15,6 +15,9 @@ import os
 import dj_database_url
 import sys
 
+# Ensure the staticfiles directory exists
+os.makedirs(os.path.join(Path(__file__).resolve().parent.parent, 'staticfiles'), exist_ok=True)
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -135,6 +138,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# If you use a custom storage backend (e.g., S3), ensure all required environment variables are set in Railway.
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
