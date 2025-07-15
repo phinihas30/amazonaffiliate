@@ -147,13 +147,18 @@ LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'handlers': {
+        'file': {
+            'class': 'logging.FileHandler',
+            'filename': '/tmp/django.log',
+            'level': 'DEBUG',
+        },
         'console': {
             'class': 'logging.StreamHandler',
             'stream': sys.stdout,
         },
     },
     'root': {
-        'handlers': ['console'],
+        'handlers': ['console', 'file'],
         'level': 'DEBUG',
     },
 } 
