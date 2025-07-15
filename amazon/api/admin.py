@@ -1,5 +1,4 @@
 from django.contrib import admin
-from .models import AffiliateProduct, Click
+from .models import AffiliateProduct
 
 admin.site.register(AffiliateProduct)
-admin.site.register(Click)
