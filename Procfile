@@ -1,1 +1,1 @@
-web: gunicorn amazon.wsgi 
+web: gunicorn amazon.wsgi --chdir amazon 
