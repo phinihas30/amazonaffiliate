@@ -65,6 +65,8 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
 ]
 
+CSRF_TRUSTED_ORIGINS = os.environ.get('CSRF_TRUSTED_ORIGINS', '').split(',')
+
 ROOT_URLCONF = 'amazon.urls'
 
 TEMPLATES = [
