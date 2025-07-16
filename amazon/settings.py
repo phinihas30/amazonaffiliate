@@ -104,7 +104,15 @@ DATABASES = {
 # If DATABASE_URL is set (e.g., in Railway), use PostgreSQL
 DATABASE_URL = os.environ.get('DATABASE_URL')
 if DATABASE_URL:
-    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+    try:
+        DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+    except Exception as e:
+        print(f"Database configuration error: {e}")
+        # Fallback to SQLite for development if DATABASE_URL is malformed
+        if DEBUG:
+            print("Falling back to SQLite for development")
+        else:
+            raise
 
 
 # Password validation

@@ -3,5 +3,5 @@ cmds = [
   "python manage.py --version || (echo 'Python failed to run' && exit 1)"
 ]
 
-[start]
-cmd = "sh -c 'python manage.py migrate && python manage.py collectstatic --noinput && echo \"from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.filter(username=\\'phinihas\\').exists() or User.objects.create_superuser(\\'phinihas\\', \\'phinnu@gmail.com\\', \\'15Sixteen@\\')\" | python manage.py shell && gunicorn amazon.wsgi --chdir amazon'" 
+# Note: Railway will use Procfile for deployment commands
+# This nixpacks.toml is kept for potential alternative deployment methods
