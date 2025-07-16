@@ -1,4 +1,5 @@
 # Alternative simple Procfile if the main one doesn't work
-# Rename this to Procfile if needed
+# Use this if PostgreSQL connection issues persist
+# To use: mv Procfile Procfile.backup && mv Procfile.simple Procfile
 
-web: python manage.py migrate && python manage.py create_superuser_from_env --skip-if-exists && gunicorn amazon.wsgi
+web: python manage.py migrate --noinput || echo "Migration failed, continuing..." && python manage.py create_superuser_from_env --skip-if-exists || echo "Superuser creation failed, continuing..." && gunicorn amazon.wsgi
