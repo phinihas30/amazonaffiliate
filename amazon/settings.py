@@ -60,10 +60,24 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# CORS settings - support both development and production
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
 ]
+
+# Add production CORS origins from environment variable
+_cors_origins = os.environ.get('CORS_ALLOWED_ORIGINS')
+if _cors_origins:
+    CORS_ALLOWED_ORIGINS.extend([origin.strip() for origin in _cors_origins.split(',') if origin.strip()])
+
+# Fallback: Allow all origins in development (not recommended for production)
+if DEBUG:
+    CORS_ALLOW_ALL_ORIGINS = False  # Keep this False for security
+else:
+    # In production, ensure CORS_ALLOWED_ORIGINS is properly set
+    if not _cors_origins:
+        print("WARNING: CORS_ALLOWED_ORIGINS environment variable not set in production!")
 
 _csrf_origins = os.environ.get('CSRF_TRUSTED_ORIGINS')
 if _csrf_origins:
