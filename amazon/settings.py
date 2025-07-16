@@ -121,6 +121,8 @@ if 'collectstatic' in sys.argv:
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': ':memory:',
     }
+    # Disable database-dependent apps during collectstatic
+    INSTALLED_APPS = [app for app in INSTALLED_APPS if app != 'amazon.api']
 
 
 # Password validation
