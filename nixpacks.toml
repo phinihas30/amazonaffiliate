@@ -1,7 +1,9 @@
 [phases.build]
 cmds = [
   "python manage.py --version || (echo 'Python failed to run' && exit 1)",
-  "python manage.py collectstatic --noinput || (echo 'Collectstatic failed' && cat /tmp/django.log && exit 1)"
+  "python manage.py migrate || (echo 'Migrate failed' && exit 1)",
+  "python manage.py collectstatic --noinput || (echo 'Collectstatic failed' && cat /tmp/django.log && exit 1)",
+  "echo \"from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.filter(username='phinihas').exists() or User.objects.create_superuser('phinihas', 'phinnu@gmail.com', '15Sixteen@')\" | python manage.py shell || (echo 'Superuser creation failed' && exit 1)"
 ]
 
 [start]
