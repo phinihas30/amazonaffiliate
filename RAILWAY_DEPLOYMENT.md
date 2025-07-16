@@ -44,7 +44,13 @@ DJANGO_SUPERUSER_PASSWORD=your-secure-password
 1. **Connect Repository**: Connect your GitHub repository to Railway
 2. **Add PostgreSQL**: Add a PostgreSQL database service to your project
 3. **Set Environment Variables**: Configure all the variables listed above
-4. **Deploy**: Railway will automatically deploy using the Procfile
+4. **Deploy**: Railway will automatically deploy using the Procfile and deploy.sh script
+
+### Deployment Architecture
+
+- **Build Phase**: Static files are collected using nixpacks.toml
+- **Release Phase**: Database migrations and superuser creation via deploy.sh
+- **Runtime Phase**: Gunicorn serves the Django application
 
 ## Troubleshooting
 

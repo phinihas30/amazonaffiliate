@@ -1,0 +1,4 @@
+# Alternative simple Procfile if the main one doesn't work
+# Rename this to Procfile if needed
+
+web: python manage.py migrate && python manage.py create_superuser_from_env --skip-if-exists && gunicorn amazon.wsgi

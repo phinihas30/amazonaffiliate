@@ -1,7 +1,7 @@
 [phases.build]
 cmds = [
-  "python manage.py --version || (echo 'Python failed to run' && exit 1)"
+  "python manage.py collectstatic --noinput --clear"
 ]
 
-# Note: Railway will use Procfile for deployment commands
-# This nixpacks.toml is kept for potential alternative deployment methods
+[phases.setup]
+nixPkgs = ["python311", "postgresql"]

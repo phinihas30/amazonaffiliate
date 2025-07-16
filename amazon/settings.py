@@ -114,6 +114,14 @@ if DATABASE_URL:
         else:
             raise
 
+# For collectstatic during build phase when database might not be available
+import sys
+if 'collectstatic' in sys.argv:
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': ':memory:',
+    }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
