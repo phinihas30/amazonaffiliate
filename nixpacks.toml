@@ -5,4 +5,4 @@ cmds = [
 ]
 
 [start]
-cmd = "python manage.py migrate && echo \"from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.filter(username='phinihas').exists() or User.objects.create_superuser('phinihas', 'phinnu@gmail.com', '15Sixteen@')\" | python manage.py shell && gunicorn amazon.wsgi --chdir amazon" 
+cmd = "sh -c 'python manage.py migrate && echo \"from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.filter(username=\\'phinihas\\').exists() or User.objects.create_superuser(\\'phinihas\\', \\'phinnu@gmail.com\\', \\'15Sixteen@\\')\" | python manage.py shell && gunicorn amazon.wsgi --chdir amazon'" 
