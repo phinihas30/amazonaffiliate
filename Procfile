@@ -1,1 +1,1 @@
-web: python manage.py migrate --noinput; python manage.py create_superuser_from_env --skip-if-exists; gunicorn amazon.wsgi
+web: python manage.py migrate --noinput && python manage.py create_superuser_from_env --skip-if-exists && gunicorn amazon.wsgi

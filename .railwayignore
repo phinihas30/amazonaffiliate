@@ -1,0 +1,7 @@
+deploy.sh
+test_superuser_creation.py
+Procfile.simple
+.idea/
+__pycache__/
+*.pyc
+db.sqlite3
