@@ -78,10 +78,24 @@ else:
     # In production, ensure CORS_ALLOWED_ORIGINS is properly set
     if not _cors_origins:
         print("WARNING: CORS_ALLOWED_ORIGINS environment variable not set in production!")
+        # Temporary fix: Allow specific domains if environment variable is not set
+        CORS_ALLOWED_ORIGINS.extend([
+            "https://pickmetrend.com",
+            "https://amazonaffiliatevercel-git-main-phinihas-projects-6aed2c47.vercel.app",
+            "https://amazonaffiliatevercel-cshh9chts-phinihas-projects-6aed2c47.vercel.app"
+        ])
 
 _csrf_origins = os.environ.get('CSRF_TRUSTED_ORIGINS')
 if _csrf_origins:
     CSRF_TRUSTED_ORIGINS = [origin for origin in _csrf_origins.split(',') if origin.startswith('http://') or origin.startswith('https://')]
+else:
+    # Fallback CSRF trusted origins if environment variable is not set
+    CSRF_TRUSTED_ORIGINS = [
+        "https://amazonaffiliate-production.up.railway.app",
+        "https://pickmetrend.com",
+        "https://amazonaffiliatevercel-git-main-phinihas-projects-6aed2c47.vercel.app",
+        "https://amazonaffiliatevercel-cshh9chts-phinihas-projects-6aed2c47.vercel.app"
+    ]
 
 ROOT_URLCONF = 'amazon.urls'
 
