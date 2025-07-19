@@ -1,17 +1,11 @@
 [phases.setup]
-nixPkgs = ["python311", "nodejs-18_x", "npm"]
+nixPkgs = ["python311"]
 
 [phases.install]
-cmds = [
-    "pip install -r requirements.txt",
-    "cd frontend && npm install"
-]
+cmds = ["pip install -r requirements.txt"]
 
 [phases.build]
-cmds = [
-    "cd frontend && npm run build",
-    "python manage.py collectstatic --noinput"
-]
+cmds = ["python manage.py collectstatic --noinput"]
 
 [start]
 cmd = "bash deploy.sh && gunicorn amazon.wsgi"
