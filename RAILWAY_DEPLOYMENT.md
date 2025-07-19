@@ -54,6 +54,19 @@ DJANGO_SUPERUSER_PASSWORD=your-secure-password
 
 ## Troubleshooting
 
+### Build Issues
+
+If you encounter "python: command not found" during build:
+
+1. **Check nixpacks.toml**: Ensure the `nixpacks.toml` file is present in the root directory
+2. **Verify Python installation**: The nixpacks.toml should include `python311` in the setup phase
+3. **Alternative configuration**: If issues persist, try using `nixpacks.simple.toml`:
+   ```bash
+   mv nixpacks.toml nixpacks.backup.toml
+   mv nixpacks.simple.toml nixpacks.toml
+   ```
+4. **Railway configuration**: Ensure `railway.json` uses NIXPACKS builder without custom build commands
+
 ### Superuser Creation Issues
 
 If you encounter superuser creation errors:
