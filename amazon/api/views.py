@@ -9,7 +9,7 @@ class ProductViewSet(viewsets.ModelViewSet):
     queryset = AffiliateProduct.objects.all()
     serializer_class = AffiliateProductSerializer
     filter_backends = [filters.OrderingFilter]
-    ordering_fields = ['created_at', 'price']
+    ordering_fields = ['created_at', 'price', 'rating', 'is_featured']
 
 @api_view(['GET'])
 def track_product_click(request, product_id):
